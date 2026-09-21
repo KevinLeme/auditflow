@@ -2,6 +2,14 @@
 
 > Sistema web responsivo para planejamento, execução e acompanhamento de auditorias 5S.
 
+## 🌐 Demo online
+
+Acesse a versão pública do projeto:
+
+**[Abrir AuditFlow](https://auditflow-5s.netlify.app)**
+
+> A demonstração utiliza exclusivamente dados fictícios e armazena as informações localmente no navegador.git add README.md
+
 O **AuditFlow** é um projeto full stack de portfólio criado para explorar uma rotina de auditorias recorrentes: distribuição de responsáveis, checklist, salvamento de progresso, conclusão, acompanhamento mensal e consolidação de resultados.
 
 > **Privacidade:** esta versão pública utiliza exclusivamente nomes, áreas e registros fictícios. Ela não contém dados operacionais, credenciais ou informações de nenhuma empresa real.
