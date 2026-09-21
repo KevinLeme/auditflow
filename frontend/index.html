@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0f5f6d" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AuditFlow" />
+    <title>AuditFlow · Gestão de Auditorias 5S</title>
+    <link rel="manifest" href="manifest.webmanifest?v=1.0" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="style.css?v=1.0" />
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="icon-shield-check" viewBox="0 0 24 24">
+        <path
+          d="M12 3 5.5 5.7v5.7c0 4.2 2.7 7.7 6.5 9.6 3.8-1.9 6.5-5.4 6.5-9.6V5.7L12 3Z"
+        />
+        <path d="m8.8 12 2.1 2.1 4.5-4.7" />
+      </symbol>
+      <symbol id="icon-clipboard-check" viewBox="0 0 24 24">
+        <path
+          d="M9 5H6.8A1.8 1.8 0 0 0 5 6.8v12.4A1.8 1.8 0 0 0 6.8 21h10.4a1.8 1.8 0 0 0 1.8-1.8V6.8A1.8 1.8 0 0 0 17.2 5H15"
+        />
+        <rect x="9" y="3" width="6" height="4" rx="1.5" />
+        <path d="m8.5 14 2 2 4.7-5" />
+      </symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="16" rx="2" />
+        <path d="M8 3v4M16 3v4M3 10h18" />
+      </symbol>
+      <symbol id="icon-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </symbol>
+      <symbol id="icon-trophy" viewBox="0 0 24 24">
+        <path d="M8 4h8v4a4 4 0 0 1-8 0V4Z" />
+        <path
+          d="M8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M12 12v5M8 21h8M9 17h6"
+        />
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3.2 2" />
+      </symbol>
+      <symbol id="icon-check-circle" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="m8 12 2.5 2.5L16.5 9" />
+      </symbol>
+      <symbol id="icon-layers" viewBox="0 0 24 24">
+        <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+        <path d="m3 12 9 5 9-5M3 16l9 5 9-5" />
+      </symbol>
+      <symbol id="icon-percent" viewBox="0 0 24 24">
+        <path d="m6 18 12-12" />
+        <circle cx="7" cy="7" r="2" />
+        <circle cx="17" cy="17" r="2" />
+      </symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path
+          d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"
+        />
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4.5 21a7.5 7.5 0 0 1 15 0" />
+      </symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+        <path d="M5 12h14M14 7l5 5-5 5" />
+      </symbol>
+      <symbol id="icon-database" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="5" rx="8" ry="3" />
+        <path
+          d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"
+        />
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+      </symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24">
+        <path d="M12 21V9M7 14l5-5 5 5M5 3h14" />
+      </symbol>
+      <symbol id="icon-history" viewBox="0 0 24 24">
+        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+        <path d="M3 3v5h5M12 7v5l3 2" />
+      </symbol>
+      <symbol id="icon-install" viewBox="0 0 24 24">
+        <path d="M12 3v11M8 10l4 4 4-4M5 18v3h14v-3" />
+      </symbol>
+    </svg>
+
+    <div class="utility-bar">
+      <div class="shell utility-bar__inner">
+        <span class="utility-bar__tag">AuditFlow · Portfólio</span>
+        <span class="utility-bar__note">Demo pública · dados fictícios</span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="shell site-header__inner">
+        <button
+          class="brand"
+          type="button"
+          data-view-link="minhas"
+          aria-label="Ir para Minhas Auditorias"
+        >
+          <span class="brand__mark" aria-hidden="true">
+            <svg class="ui-icon"><use href="#icon-shield-check"></use></svg>
+          </span>
+          <span class="brand__text">
+            <strong>AuditFlow</strong>
+            <small>Gestão de auditorias 5S</small>
+          </span>
+        </button>
+
+        <nav class="desktop-nav" aria-label="Navegação principal">
+          <button class="nav-link active" data-view="minhas">
+            Minhas Auditorias
+          </button>
+          <button class="nav-link" data-view="acompanhamento">
+            Acompanhamento
+          </button>
+          <button class="nav-link" data-view="cronograma">Cronograma</button>
+          <button class="nav-link" data-view="areas">Áreas</button>
+          <button class="nav-link" data-view="resultados">Resultados</button>
+        </nav>
+
+        <div class="header-user">
+          <div class="avatar-wrap">
+            <div class="avatar" id="avatar-inicial">K</div>
+            <span class="avatar-status" aria-label="Auditor ativo"></span>
+          </div>
+          <div class="header-user__copy">
+            <span class="header-user__hello">Auditor ativo</span>
+            <select
+              id="auditor-ativo"
+              aria-label="Selecionar auditor para simulação"
+            >
+              <option>Ana</option>
+              <option>Bruno</option>
+              <option>Carlos</option>
+            </select>
+          </div>
+          <button
+            id="mobile-auditor-switch"
+            class="mobile-auditor-switch"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="auditor-modal"
+            aria-label="Trocar auditor"
+          >
+            <span class="mobile-auditor-switch__dot" aria-hidden="true"></span>
+            <span id="mobile-auditor-name">Ana</span>
+            <span class="mobile-auditor-switch__chevron" aria-hidden="true"
+              >⌄</span
+            >
+          </button>
+          <button
+            id="mobile-data-manager"
+            class="mobile-header-action"
+            type="button"
+            aria-label="Abrir informações da conexão"
+          >
+            <svg class="ui-icon" aria-hidden="true">
+              <use href="#icon-database"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell page-shell">
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow" id="page-eyebrow">Área do auditor</p>
+          <h1 id="page-title">Minhas Auditorias</h1>
+          <p id="page-subtitle">
+            Veja o que está programado para você e execute o checklist 5S.
+          </p>
+        </div>
+        <div class="page-heading__action" id="page-heading-action">
+          <span class="context-chip" id="api-status-chip">
+            <svg class="ui-icon"><use href="#icon-database"></use></svg>
+            <span id="api-status-text">Carregando demo…</span>
+          </span>
+          <button
+            class="button button--secondary button--small"
+            id="open-data-manager"
+            type="button"
+          >
+            <svg class="ui-icon"><use href="#icon-database"></use></svg>
+            <span>Sobre a demo</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="view-minhas" class="view active"></section>
+      <section id="view-acompanhamento" class="view"></section>
+      <section id="view-cronograma" class="view"></section>
+      <section id="view-areas" class="view"></section>
+      <section id="view-resultados" class="view"></section>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Navegação mobile">
+      <button class="mobile-nav__item active" data-view="minhas">
+        <svg class="mobile-nav__icon ui-icon" aria-hidden="true">
+          <use href="#icon-clipboard-check"></use>
+        </svg>
+        <span>Minhas</span>
+      </button>
+      <button class="mobile-nav__item" data-view="acompanhamento">
+        <svg class="mobile-nav__icon ui-icon" aria-hidden="true">
+          <use href="#icon-chart"></use>
+        </svg>
+        <span>Acompanhar</span>
+      </button>
+      <button class="mobile-nav__item" data-view="cronograma">
+        <svg class="mobile-nav__icon ui-icon" aria-hidden="true">
+          <use href="#icon-calendar"></use>
+        </svg>
+        <span>Cronograma</span>
+      </button>
+      <button class="mobile-nav__item" data-view="areas">
+        <svg class="mobile-nav__icon ui-icon" aria-hidden="true">
+          <use href="#icon-grid"></use>
+        </svg>
+        <span>Áreas</span>
+      </button>
+      <button class="mobile-nav__item" data-view="resultados">
+        <svg class="mobile-nav__icon ui-icon" aria-hidden="true">
+          <use href="#icon-trophy"></use>
+        </svg>
+        <span>Resultados</span>
+      </button>
+    </nav>
+
+    <div
+      id="audit-modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="audit-title"
+    >
+      <div class="audit-sheet">
+        <header class="audit-sheet__header">
+          <div>
+            <p class="eyebrow">Checklist 5S</p>
+            <h2 id="audit-title">Realizar auditoria</h2>
+            <p id="audit-meta"></p>
+          </div>
+          <button
+            id="close-modal"
+            class="icon-button"
+            type="button"
+            aria-label="Fechar auditoria"
+          >
+            ×
+          </button>
+        </header>
+
+        <div class="audit-progress-wrap">
+          <div class="audit-progress-copy">
+            <span id="audit-progress-label">0 de 24 critérios respondidos</span>
+            <strong id="audit-progress-percent">0%</strong>
+          </div>
+          <div class="audit-progress">
+            <span id="audit-progress-bar"></span>
+          </div>
+        </div>
+
+        <div class="score-legend" aria-label="Escala de avaliação">
+          <div class="score-legend__item score-legend__item--bad">
+            <strong>1</strong><span>Ruim</span>
+          </div>
+          <div class="score-legend__item score-legend__item--regular">
+            <strong>2</strong><span>Regular</span>
+          </div>
+          <div class="score-legend__item score-legend__item--good">
+            <strong>3</strong><span>Bom</span>
+          </div>
+        </div>
+
+        <form id="audit-form">
+          <div id="question-list" class="question-list"></div>
+          <div class="audit-sheet__footer">
+            <label class="notes-field">
+              <span>Observações gerais <small>opcional</small></span>
+              <textarea
+                id="audit-notes"
+                rows="4"
+                placeholder="Registre desvios, evidências ou observações relevantes."
+              ></textarea>
+            </label>
+            <div class="autosave-line">
+              <span id="autosave-state" class="autosave-state"
+                >Salvamento automático ativo</span
+              >
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                id="save-progress"
+                class="button button--secondary"
+              >
+                Fechar e continuar depois
+              </button>
+              <button
+                type="submit"
+                id="complete-audit"
+                class="button button--primary"
+                disabled
+              >
+                Concluir auditoria
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="data-modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="data-title"
+    >
+      <div class="data-dialog">
+        <div class="data-dialog__header">
+          <div>
+            <p class="eyebrow">Demonstração</p>
+            <h2 id="data-title">Sobre esta versão</h2>
+            <p>
+              Esta versão pública usa somente dados fictícios e salva alterações no navegador.
+            </p>
+          </div>
+          <button
+            id="close-data-manager"
+            class="icon-button"
+            type="button"
+            aria-label="Fechar"
+          >
+            ×
+          </button>
+        </div>
+
+        <div class="data-actions-grid">
+          <article class="data-action-card">
+            <span class="data-action-card__icon"
+              ><svg class="ui-icon"><use href="#icon-database"></use></svg
+            ></span>
+            <div>
+              <strong>Modo de demonstração</strong>
+              <p>
+                Armazenamento: <code id="api-modal-url">–</code><br />Status:
+                <strong id="api-modal-status">Verificando…</strong>
+              </p>
+            </div>
+            <button id="test-api" class="button button--primary" type="button">
+              Testar demonstração
+            </button>
+          </article>
+          <article class="data-action-card">
+            <span class="data-action-card__icon"
+              ><svg class="ui-icon"><use href="#icon-install"></use></svg
+            ></span>
+            <div>
+              <strong>Instalar no dispositivo</strong>
+              <p id="install-help">
+                Disponível quando a interface estiver publicada em HTTPS ou
+                aberta em localhost.
+              </p>
+            </div>
+            <button
+              id="install-app"
+              class="button button--secondary"
+              type="button"
+              disabled
+            >
+              Instalação indisponível
+            </button>
+          </article>
+        </div>
+
+        <div class="data-local-note">
+          <strong>Privacidade da demonstração</strong>
+          <span
+            >Todos os nomes, áreas e registros desta versão são fictícios. Respostas, observações e resultados ficam apenas no localStorage deste navegador.</span
+          >
+        </div>
+        <div class="data-dialog__footer">
+          <button id="data-done" class="button button--secondary" type="button">
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="auditor-modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="auditor-modal-title"
+    >
+      <div class="auditor-dialog">
+        <div class="auditor-dialog__header">
+          <div>
+            <p class="eyebrow">Usuário do piloto</p>
+            <h2 id="auditor-modal-title">Trocar auditor</h2>
+            <p>Escolha quem está utilizando este dispositivo.</p>
+          </div>
+          <button
+            id="close-auditor-modal"
+            class="icon-button"
+            type="button"
+            aria-label="Fechar"
+          >
+            ×
+          </button>
+        </div>
+        <div id="auditor-options" class="auditor-options">
+          <button
+            class="auditor-option"
+            type="button"
+            data-select-auditor="Ana"
+          >
+            <span class="auditor-option__avatar">K</span
+            ><span><strong>Ana</strong><small>Entrar como auditor</small></span
+            ><span class="auditor-option__check">✓</span>
+          </button>
+          <button
+            class="auditor-option"
+            type="button"
+            data-select-auditor="Bruno"
+          >
+            <span class="auditor-option__avatar">I</span
+            ><span><strong>Bruno</strong><small>Entrar como auditor</small></span
+            ><span class="auditor-option__check">✓</span>
+          </button>
+          <button
+            class="auditor-option"
+            type="button"
+            data-select-auditor="Carlos"
+          >
+            <span class="auditor-option__avatar">C</span
+            ><span
+              ><strong>Carlos</strong
+              ><small>Entrar como auditor</small></span
+            ><span class="auditor-option__check">✓</span>
+          </button>
+        </div>
+        <p class="auditor-dialog__note">
+          A troca ainda simula o usuário logado, mas os dados agora são
+          compartilhados pelo backend.
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="toast-region"
+      class="toast-region"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <script src="config.js?v=1.0"></script>
+    <script src="script.js?v=1.0"></script>
+  </body>
+</html>
